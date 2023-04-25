@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:medial_match/services/storage_service.dart';
+import 'package:medial_match/services/image_storage_service.dart';
 
 part 'service.freezed.dart';
 part 'service.g.dart';
@@ -14,7 +14,7 @@ class Service with _$Service {
   }) = _Service;
 
   Service._();
-  late final image = GetIt.I.get<IStorageService>().fetch(id.toString());
+  late final image = GetIt.I.get<IImageStorageService>().fetch(id.toString());
 
   factory Service.fromJson(Map<String, Object?> json) =>
       _$ServiceFromJson(json);

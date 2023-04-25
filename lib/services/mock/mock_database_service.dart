@@ -4,6 +4,7 @@ import 'package:medial_match/models/service.dart';
 import 'package:medial_match/services/database_service.dart';
 import 'package:faker/faker.dart';
 
+/// Generate mock [Service] for emulating database
 class MockDatabaseService implements IDatabaseService {
   MockDatabaseService() {
     GetIt.I.get<Logger>().d(
