@@ -7,8 +7,23 @@ class ServiceCardWidget extends StatelessWidget {
   final Service service;
 
   @override
-  Widget build(BuildContext context) => ListTile(
-        title: Text(service.name),
-        subtitle: Text(service.description),
+  Widget build(BuildContext context) => Card(
+        child: Column(
+          children: [
+            Expanded(
+                flex: 3,
+                child: FutureBuilder(
+                  future: service.image,
+                  builder: (context, snapshot) => Placeholder(),
+                )),
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(service.name),
+              ),
+            ),
+          ],
+        ),
       );
 }

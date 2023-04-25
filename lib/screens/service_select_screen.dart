@@ -12,10 +12,10 @@ class ServiceSelectScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Servicios Disponibles")),
-      body: ListView.builder(
-        itemCount: services.length,
-        itemBuilder: (_, index) =>
-            ServiceCardWidget(service: services.elementAt(index)),
+      body: GridView.count(
+        crossAxisCount: 2,
+        padding: const EdgeInsets.all(8.0),
+        children: services.map((e) => ServiceCardWidget(service: e)).toList(),
       ),
     );
   }

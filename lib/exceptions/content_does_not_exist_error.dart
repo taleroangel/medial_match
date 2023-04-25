@@ -1,0 +1,1 @@
+class ContentDoesNotExistError extends Error {}
