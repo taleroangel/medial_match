@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
 import 'package:medial_match/models/service.dart';
@@ -14,15 +16,22 @@ class MockDatabaseService implements IDatabaseService {
 
   /// Faker instance
   final _fakerInstance = Faker();
+  final _randomInstance = Random();
+  var _instanceCode = 0;
 
   /// Generate a MockService
   Service _mockService() {
+    final randomLowerPrice = (_randomInstance.nextDouble() *
+        (_randomInstance.nextInt(500000) + 20000));
+
     return Service(
-      id: _fakerInstance.randomGenerator.integer(1024),
+      id: _instanceCode++,
       name: _fakerInstance.lorem.sentence(),
-      description: _fakerInstance.lorem.sentences(20).reduce(
+      description: _fakerInstance.lorem.sentences(10).reduce(
             (value, element) => "$value $element",
           ),
+      priceLower: randomLowerPrice,
+      priceUpper: randomLowerPrice + _randomInstance.nextInt(100000),
     );
   }
 
