@@ -24,7 +24,6 @@ void main() async {
 
     // Wait for GetIt Dependencies
     await GetIt.I.allReady();
-
     GetIt.I.get<Logger>().d(
           "All dependencies are ready",
         );

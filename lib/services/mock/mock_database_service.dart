@@ -17,8 +17,6 @@ class MockDatabaseService implements IDatabaseService {
 
   /// Generate a MockService
   Service _mockService() {
-    GetIt.I.get<Logger>().v("Generating mock service");
-
     return Service(
       id: _fakerInstance.randomGenerator.integer(1024),
       name: _fakerInstance.lorem.sentence(),
