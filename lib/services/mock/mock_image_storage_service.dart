@@ -33,7 +33,7 @@ class MockImageStorageService implements IImageStorageService {
   }
 
   @override
-  Future<Uint8List> fetch(String resource) => _mockNetworkFetch();
+  Future<Uint8List> fetch(String? resource) => _mockNetworkFetch();
 
   @override
   Future<bool> store(Future<Uint8List> content) {

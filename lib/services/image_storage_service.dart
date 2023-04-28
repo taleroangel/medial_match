@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 abstract class IImageStorageService {
   /// Fetch content from Storage
-  Future<Uint8List> fetch(String resource);
+  Future<Uint8List> fetch(String? resource);
 
   /// Store content in Storage
   Future<bool> store(Future<Uint8List> content);

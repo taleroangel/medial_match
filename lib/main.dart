@@ -9,7 +9,6 @@ import 'package:medial_match/services/mock/mock_database_service.dart';
 import 'package:medial_match/services/mock/mock_image_storage_service.dart';
 
 void main() async {
-
   // Register Logging
   GetIt.I.registerSingleton(
     Logger(

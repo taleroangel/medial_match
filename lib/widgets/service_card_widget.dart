@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/models/service.dart';
-import 'package:medial_match/screens/service_detail_screen.dart';
+import 'package:medial_match/screens/requests/service_detail_screen.dart';
 import 'package:medial_match/widgets/image_content_loader_widget.dart';
 
 /// Show a [Service] in a [Card] to be picked, when clicked pushed a [ServiceDetailScreen]
