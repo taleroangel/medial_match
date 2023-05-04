@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
-import 'package:medial_match/exceptions/content_does_not_exist_error.dart';
+import 'package:medial_match/exceptions/content_does_not_exist_exception.dart';
 import 'package:medial_match/services/image_storage_service.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,7 +26,9 @@ class MockImageStorageService implements IImageStorageService {
             "[HTTP] Failed fetch from: ${result.request?.url}",
           );
 
-      throw ContentDoesNotExistError();
+      throw ContentDoesNotExistException(
+        resource: result.request!.url.toString(),
+      );
     }
 
     return result.bodyBytes;

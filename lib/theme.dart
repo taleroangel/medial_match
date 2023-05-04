@@ -8,6 +8,9 @@ ThemeData applicationTheme() => ThemeData(
       useMaterial3: true,
       colorScheme: colorScheme(),
       textTheme: textTheme(),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: OutlineInputBorder(),
+      ),
     );
 
 ColorScheme colorScheme() {

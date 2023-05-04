@@ -1,5 +1,7 @@
+import 'package:faker/faker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
+import 'package:medial_match/models/user.dart';
 import 'package:medial_match/providers/authentication_provider.dart';
 
 class MockAuthenticationProvider extends IAuthenticationProvider {
@@ -9,16 +11,38 @@ class MockAuthenticationProvider extends IAuthenticationProvider {
         );
   }
 
+  final _fakerInstance = Faker();
+
+  User get mockUser => User(
+        id: _fakerInstance.randomGenerator.integer(1024),
+        name: _fakerInstance.person.name(),
+        type: UserType.client,
+      );
+
   var _authenticationStatus = false;
+  User? _currentUser;
 
   @override
-  Future<bool> authenticate(String email, String password) async {
+  Future<User> authenticate(String email, String password) async {
     _authenticationStatus = true;
+    _currentUser = mockUser;
 
-    GetIt.I.get<Logger>().i("Authenticated successfully");
+    GetIt.I.get<Logger>().i(
+          "Authenticated successfully\n[email: $email, password: $password]",
+        );
+
     notifyListeners();
 
-    return _authenticationStatus;
+    return _currentUser!;
+  }
+
+  @override
+  Future<bool> forgotPassword(String email) {
+    GetIt.I.get<Logger>().i(
+          "$email: Forgot password prompted",
+        );
+
+    return Future.value(true);
   }
 
   @override
@@ -29,4 +53,7 @@ class MockAuthenticationProvider extends IAuthenticationProvider {
     _authenticationStatus = false;
     notifyListeners();
   }
+
+  @override
+  User? get user => _currentUser;
 }

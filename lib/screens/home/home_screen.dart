@@ -1,10 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:medial_match/providers/authentication_provider.dart';
+import 'package:medial_match/screens/main_screen_destinations.dart';
 import 'package:medial_match/screens/requests/requests_screen.dart';
+import 'package:medial_match/screens/users/user_screen.dart';
 import 'package:medial_match/services/database_service.dart';
 import 'package:medial_match/widgets/news_card_widget.dart';
 import 'package:medial_match/widgets/profile_picture_widget.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,18 +29,26 @@ class HomeScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
                     TextSpan(
-                      text: "Lorem Ipsum",
-                      style: Theme.of(context).textTheme.displaySmall,
+                      text: context.read<IAuthenticationProvider>().user!.name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall!
+                          .copyWith(fontSize: 18.0),
                     ),
                   ],
                 ),
               ),
-              actions: const [
+              actions: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: SizedBox.square(
                     dimension: 50.0,
-                    child: ProfilePictureWidget(),
+                    child: GestureDetector(
+                      child: const ProfilePictureWidget(),
+                      onTap: () => context.dispatchNotification(
+                        const PageNavigationRequestNotification(UserScreen),
+                      ),
+                    ),
                   ),
                 ),
               ],

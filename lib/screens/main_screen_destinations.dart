@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/screens/home/home_screen.dart';
-import 'package:medial_match/screens/users/user_management_screen.dart';
+import 'package:medial_match/screens/match/match_screen.dart';
+import 'package:medial_match/screens/users/user_screen.dart';
 
 enum MainScreenDestinations {
   home(
@@ -8,8 +9,13 @@ enum MainScreenDestinations {
     Icon(Icons.home_filled),
     "Inicio",
   ),
-  userManagement(
-    UserManagementScreen(),
+  match(
+    MatchScreen(),
+    Icon(Icons.emoji_people_rounded),
+    "Match",
+  ),
+  user(
+    UserScreen(),
     Icon(Icons.supervised_user_circle_rounded),
     "Usuario",
   ),
@@ -20,4 +26,13 @@ enum MainScreenDestinations {
   final String text;
 
   const MainScreenDestinations(this.view, this.icon, this.text);
+
+  static MainScreenDestinations whereType(Type type) =>
+      MainScreenDestinations.values
+          .firstWhere((element) => element.view.runtimeType == type);
+}
+
+class PageNavigationRequestNotification extends Notification {
+  final Type pageType;
+  const PageNavigationRequestNotification(this.pageType);
 }

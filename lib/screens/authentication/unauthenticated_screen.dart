@@ -1,49 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:medial_match/providers/authentication_provider.dart';
-import 'package:provider/provider.dart';
-import 'package:vector_graphics/vector_graphics.dart';
+import 'package:medial_match/screens/authentication/sign_in_screen.dart';
+import 'package:medial_match/widgets/medial_match_logo.dart';
+import 'package:medial_match/widgets/medial_match_text.dart';
 
 class UnauthenticatedScreen extends StatelessWidget {
   const UnauthenticatedScreen({super.key});
 
-  //TODO: Push routes
-  void signIn(BuildContext context) {
-    final authService = context.read<IAuthenticationProvider>();
-    authService.authenticate("", "");
-  }
+  /// Push [SignInScreen] route for authentication
+  void signIn(BuildContext context) =>
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => const SignInScreen(),
+      ));
 
   //TODO: Push routes
-  void signUp(BuildContext context) {
-    signIn(context);
-  }
+  void signUp(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.primary,
         body: Column(children: [
-          Expanded(
+          const Expanded(
             flex: 4,
-            child: SvgPicture(
-              const AssetBytesLoader("assets/svg/medial_match.vec"),
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.onPrimary,
-                BlendMode.srcIn,
-              ),
-            ),
+            child: MedialMatchLogo(),
           ),
-          Expanded(
+          const Expanded(
             flex: 2,
-            child: Text.rich(
-              const TextSpan(children: [
-                TextSpan(text: "MEDIAL\n"),
-                TextSpan(text: "MATCH"),
-              ]),
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .displayLarge!
-                  .copyWith(color: Colors.white, fontSize: 45),
+            child: Hero(
+              tag: "text:medial_match",
+              child: MedialMatchText(),
             ),
           ),
           Expanded(

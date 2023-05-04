@@ -1,13 +1,23 @@
 // ignore_for_file: prefer-match-file-name
 
 import 'package:flutter/foundation.dart';
+import 'package:medial_match/exceptions/authentication_exception.dart';
+import 'package:medial_match/models/user.dart';
 
 abstract class IAuthenticationProvider extends ChangeNotifier {
   /// Check if user is authenticated
   bool get authenticated;
 
+  /// Get currently authenticated user
+  User? get user;
+
   /// Authenticate user with email and password
-  Future<bool> authenticate(String email, String password);
+  /// Returns the currently logged [User]
+  /// Throws [AuthenticationException] on failure
+  Future<User> authenticate(String email, String password);
+
+  /// Forgot password
+  Future<bool> forgotPassword(String email);
 
   /// Sign Out of currently authenticated account
   void signOut();

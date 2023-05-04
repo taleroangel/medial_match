@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/screens/main_screen_destinations.dart';
+import 'package:medial_match/screens/match/match_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -27,14 +28,31 @@ class _MainScreenState extends State<MainScreen> {
         body: PageView(
           controller: pageController,
           onPageChanged: (value) => setState(() => currentPageIndex = value),
-          children: MainScreenDestinations.values.map((e) => e.view).toList(),
+          children: MainScreenDestinations.values
+              .map((e) =>
+                  NotificationListener<PageNavigationRequestNotification>(
+                    child: e.view,
+                    onNotification: (pageNavigationNotification) {
+                      // Navigate to that page
+                      navigateToPage(MainScreenDestinations.whereType(
+                        pageNavigationNotification.pageType,
+                      ).index);
+
+                      return true;
+                    },
+                  ))
+              .toList(),
         ),
         bottomNavigationBar: NavigationBar(
           selectedIndex: currentPageIndex,
           onDestinationSelected: (value) => navigateToPage(value),
           destinations: MainScreenDestinations.values
               .map((e) => NavigationDestination(
-                    icon: e.icon,
+                    icon: Badge.count(
+                      count: 2,
+                      isLabelVisible: e.view is MatchScreen,
+                      child: e.icon,
+                    ),
                     label: e.text,
                   ))
               .toList(),

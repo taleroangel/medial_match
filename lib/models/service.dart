@@ -17,7 +17,7 @@ class Service with _$Service {
   }) = _Service;
 
   Service._();
-  late final image = GetIt.I.get<IImageStorageService>().fetch(id.toString());
+  late final image = GetIt.I.get<IImageStorageService>().fetch("service_$id");
 
   static final priceFormat = NumberFormat("###,###,### \$");
 
