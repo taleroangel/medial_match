@@ -1,14 +1,18 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:medial_match/providers/authentication_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
-  const ProfilePictureWidget({super.key});
+  const ProfilePictureWidget({this.data, super.key});
+
+  final Future<Uint8List>? data;
 
   @override
   Widget build(BuildContext context) {
     final profilePicture =
-        context.watch<IAuthenticationProvider>().user!.profilePicture;
+        data ?? context.watch<IAuthenticationProvider>().user!.profilePicture;
 
     return FutureBuilder(
       future: profilePicture,

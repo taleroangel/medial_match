@@ -11,9 +11,9 @@ class MockAuthenticationProvider extends IAuthenticationProvider {
         );
   }
 
-  final _fakerInstance = Faker();
+  static final _fakerInstance = Faker();
 
-  User get mockUser => User(
+  static User get mockUser => User(
         id: _fakerInstance.randomGenerator.integer(1024),
         name: _fakerInstance.person.name(),
         type: UserType.client,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:medial_match/screens/authentication/sign_in_screen.dart';
+import 'package:medial_match/screens/authentication/sign_up_screen.dart';
 import 'package:medial_match/widgets/medial_match_logo.dart';
 import 'package:medial_match/widgets/medial_match_text.dart';
 
@@ -12,8 +14,10 @@ class UnauthenticatedScreen extends StatelessWidget {
         builder: (_) => const SignInScreen(),
       ));
 
-  //TODO: Push routes
-  void signUp(BuildContext context) {}
+  void signUp(BuildContext context) =>
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => const SignUpScreen(),
+      ));
 
   @override
   Widget build(BuildContext context) => Scaffold(
