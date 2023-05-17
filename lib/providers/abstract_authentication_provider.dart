@@ -1,10 +1,8 @@
-// ignore_for_file: prefer-match-file-name
-
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:medial_match/exceptions/authentication_exception.dart';
 import 'package:medial_match/models/user.dart';
 
-abstract class IAuthenticationProvider extends ChangeNotifier {
+abstract class AbstractAuthenticationProvider extends ChangeNotifier {
   /// Check if user is authenticated
   bool get authenticated;
 

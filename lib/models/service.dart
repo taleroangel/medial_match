@@ -12,24 +12,27 @@ class Service with _$Service {
     required int id,
     required String name,
     required String description,
-    double? priceLower,
-    double? priceUpper,
+    @Default(null) double? priceLower,
+    @Default(null) double? priceUpper,
   }) = _Service;
 
+  factory Service.fromJson(Map<String, Object?> json) =>
+      _$ServiceFromJson(json);
+
   Service._();
+
+  /// Lazy fetch the image
   late final image = GetIt.I.get<IImageStorageService>().fetch("service_$id");
 
+  /// Price formatter
   static final priceFormat = NumberFormat("###,###,### \$");
 
   /// Parse price into [priceFormat]
   String _parsePrice(double? price) =>
       price != null ? priceFormat.format(price) : '?';
 
-  /// Get the price parse in correct format
+  /// Get the price formatted
   String? get price => (priceLower != null && priceUpper != null)
       ? "${_parsePrice(priceLower)} - ${_parsePrice(priceUpper)}"
       : null;
-
-  factory Service.fromJson(Map<String, Object?> json) =>
-      _$ServiceFromJson(json);
 }

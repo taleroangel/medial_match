@@ -5,8 +5,8 @@ import 'package:logger/logger.dart';
 import 'package:medial_match/application.dart';
 import 'package:medial_match/services/image_storage_service.dart';
 import 'package:medial_match/services/database_service.dart';
-import 'package:medial_match/services/mock/mock_database_service.dart';
-import 'package:medial_match/services/mock/mock_image_storage_service.dart';
+import 'package:medial_match/mocks/mock_database_service.dart';
+import 'package:medial_match/mocks/mock_image_storage_service.dart';
 
 void main() async {
   // Register Logging

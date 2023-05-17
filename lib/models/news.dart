@@ -14,6 +14,8 @@ class News with _$News {
   }) = _News;
 
   News._();
+
+  /// Lazy fetch the image
   late final imageContent = GetIt.I.get<IImageStorageService>().fetch(imageUrl);
 
   factory News.fromJson(Map<String, Object?> json) => _$NewsFromJson(json);

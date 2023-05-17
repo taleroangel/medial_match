@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medial_match/providers/authentication_provider.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
 import 'package:medial_match/widgets/profile_picture_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +8,7 @@ class UserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<IAuthenticationProvider>().user!;
+    final user = context.read<AbstractAuthenticationProvider>().user!;
 
     return Scaffold(
       appBar: AppBar(
@@ -16,7 +16,7 @@ class UserScreen extends StatelessWidget {
         actions: [
           TextButton.icon(
             onPressed: () {
-              context.read<IAuthenticationProvider>().signOut();
+              context.read<AbstractAuthenticationProvider>().signOut();
             },
             icon: const Icon(Icons.outbond_rounded),
             label: const Text("Cerrar Sesión"),

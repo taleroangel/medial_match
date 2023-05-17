@@ -1,23 +1,15 @@
-import 'package:faker/faker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:logger/logger.dart';
+import 'package:medial_match/mocks/mock_model_generator.dart';
 import 'package:medial_match/models/user.dart';
-import 'package:medial_match/providers/authentication_provider.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
 
-class MockAuthenticationProvider extends IAuthenticationProvider {
+class MockAuthenticationProvider extends AbstractAuthenticationProvider {
   MockAuthenticationProvider() {
     GetIt.I.get<Logger>().d(
           "Generated $runtimeType",
         );
   }
-
-  static final _fakerInstance = Faker();
-
-  static User get mockUser => User(
-        id: _fakerInstance.randomGenerator.integer(1024),
-        name: _fakerInstance.person.name(),
-        type: UserType.client,
-      );
 
   var _authenticationStatus = false;
   User? _currentUser;
@@ -25,7 +17,7 @@ class MockAuthenticationProvider extends IAuthenticationProvider {
   @override
   Future<User> authenticate(String email, String password) async {
     _authenticationStatus = true;
-    _currentUser = mockUser;
+    _currentUser = MockModelGenerator.mockUser(10, 5, 5);
 
     GetIt.I.get<Logger>().i(
           "Authenticated successfully\n[email: $email, password: $password]",

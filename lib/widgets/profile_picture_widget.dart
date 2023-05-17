@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:medial_match/providers/authentication_provider.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
@@ -11,15 +11,15 @@ class ProfilePictureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profilePicture =
-        data ?? context.watch<IAuthenticationProvider>().user!.profilePicture;
+    final profilePicture = data ??
+        context.watch<AbstractAuthenticationProvider>().user!.profilePicture;
 
     return FutureBuilder(
       future: profilePicture,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const CircleAvatar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
             backgroundImage: AssetImage(
               "assets/images/missing_profile.png",
             ),
@@ -27,12 +27,12 @@ class ProfilePictureWidget extends StatelessWidget {
         } else if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           return CircleAvatar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
             backgroundImage: MemoryImage(snapshot.data!),
           );
         } else {
           return const CircleAvatar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
             child: CircularProgressIndicator(),
           );
         }

@@ -4,7 +4,7 @@ import 'dart:typed_data';
 
 import 'package:medial_match/exceptions/content_does_not_exist_exception.dart';
 
-abstract class IImageStorageService {
+abstract interface class IImageStorageService {
   /// Fetch content from Storage
   /// Returns bytes of content
   /// Throws [ContentDoesNotExistException] when content does not exist

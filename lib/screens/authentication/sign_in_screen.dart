@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/exceptions/authentication_exception.dart';
-import 'package:medial_match/providers/authentication_provider.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
 import 'package:medial_match/widgets/medial_match_text.dart';
 import 'package:provider/provider.dart';
 
@@ -30,8 +30,23 @@ class _SignInScreenState extends State<SignInScreen> {
     }
 
     // Try to authenticate
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (_) => const AlertDialog(
+        title: Text("Iniciando Sesión"),
+        content: Center(
+          heightFactor: 1.0,
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      ),
+    );
+
     context
-        .read<IAuthenticationProvider>()
+        .read<AbstractAuthenticationProvider>()
         .authenticate(emailInputController.text, passwordInputController.text)
         .then((user) {
       // Show welcome message
@@ -40,8 +55,11 @@ class _SignInScreenState extends State<SignInScreen> {
           content: Text("Bienvenido ${user.name}"),
         ),
       );
+
       // Go back to previous route
-      Navigator.of(context).pop();
+      Navigator.of(context).popUntil(
+        (route) => route.isFirst,
+      );
     })
         // Catch authentication error
         .onError<AuthenticationException>(
@@ -67,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
     // Try to recover password
     context
-        .read<IAuthenticationProvider>()
+        .read<AbstractAuthenticationProvider>()
         .forgotPassword(emailInputController.text)
         .then((emailSuccess) {
       if (emailSuccess) {

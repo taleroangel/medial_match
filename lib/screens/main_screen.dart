@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
 import 'package:medial_match/screens/main_screen_destinations.dart';
 import 'package:medial_match/screens/match/match_screen.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -49,7 +51,11 @@ class _MainScreenState extends State<MainScreen> {
           destinations: MainScreenDestinations.values
               .map((e) => NavigationDestination(
                     icon: Badge.count(
-                      count: 2,
+                      count: context
+                          .read<AbstractAuthenticationProvider>()
+                          .user!
+                          .requests
+                          .length,
                       isLabelVisible: e.view is MatchScreen,
                       child: e.icon,
                     ),

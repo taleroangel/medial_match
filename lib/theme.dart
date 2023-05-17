@@ -16,6 +16,7 @@ ThemeData applicationTheme() => ThemeData(
 ColorScheme colorScheme() {
   return ColorScheme.fromSeed(
     seedColor: medialMatchPrimary,
+    brightness: Brightness.light,
   );
 }
 

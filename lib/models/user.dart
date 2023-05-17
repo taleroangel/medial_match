@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:medial_match/models/contract.dart';
+import 'package:medial_match/models/request.dart';
 import 'package:medial_match/services/image_storage_service.dart';
 
 part 'user.freezed.dart';
@@ -10,31 +12,26 @@ class User with _$User {
   factory User({
     required int id,
     required String name,
-    @UserTypeJsonConverter() required UserType type,
+    required UserType type,
+    @Default(<Contract>{}) Set<Contract> contracts,
+    @Default(<Request>{}) Set<Request> requests,
   }) = _User;
 
   User._();
+
+  /// Lazy fetch the profile picture
   late final profilePicture =
       GetIt.I.get<IImageStorageService>().fetch("user_$id");
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }
 
-class UserTypeJsonConverter implements JsonConverter<UserType, int> {
-  const UserTypeJsonConverter();
-
-  @override
-  UserType fromJson(int json) => UserType.values.firstWhere(
-        (element) => element.id == json,
-      );
-
-  @override
-  int toJson(UserType object) => object.id;
-}
-
+@JsonEnum(valueField: "code")
 enum UserType {
-  freelancer(0, "Freelancer"),
-  client(1, "Cliente");
+  @JsonValue(0)
+  client(0, "Cliente"),
+  @JsonValue(1)
+  freelancer(1, "Freelancer");
 
   final int id;
   final String text;

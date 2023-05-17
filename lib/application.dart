@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medial_match/providers/authentication_provider.dart';
-import 'package:medial_match/providers/mock/mock_authentication_provider.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
+import 'package:medial_match/mocks/mock_authentication_provider.dart';
 import 'package:medial_match/screens/authentication/unauthenticated_screen.dart';
 import 'package:medial_match/screens/main_screen.dart';
 import 'package:medial_match/theme.dart';
@@ -13,13 +13,13 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) => MultiProvider(
         providers: [
           // Provides authentication to underlying widgets
-          ChangeNotifierProvider<IAuthenticationProvider>(
+          ChangeNotifierProvider<AbstractAuthenticationProvider>(
             create: (_) => MockAuthenticationProvider(),
           ),
         ],
         builder: (_, __) => MaterialApp(
           theme: applicationTheme(),
-          home: Consumer<IAuthenticationProvider>(
+          home: Consumer<AbstractAuthenticationProvider>(
             builder: (_, provider, __) => provider.authenticated
                 ? const MainScreen()
                 : const UnauthenticatedScreen(),

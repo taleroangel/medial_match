@@ -1,20 +1,19 @@
 name: medial_match
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: ">=3.0.0"
 
 dependencies:
-
   flutter:
     sdk: flutter
 
   get_it: ^7.3.0
-  json_annotation: ^4.8.0
+  json_annotation: ^4.8.1
   freezed_annotation: ^2.2.0
   faker: ^2.1.0
   http: ^0.13.5
@@ -29,16 +28,14 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
-
+  json_serializable: ^6.6.2
   build_runner: ^2.3.3
   dart_code_metrics: ^5.7.2
   flutter_lints: ^2.0.0
   freezed: ^2.3.2
-  json_serializable: ^6.6.1
   vector_graphics_compiler: ^1.1.5
 
 flutter:
-
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
@@ -47,7 +44,6 @@ flutter:
     - assets/svg/
 
   fonts:
-  
     - family: MedialNow
       fonts:
         - asset: assets/fonts/now_bold.otf
