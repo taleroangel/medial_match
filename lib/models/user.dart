@@ -15,6 +15,7 @@ class User with _$User {
     required UserType type,
     @Default(<Contract>{}) Set<Contract> contracts,
     @Default(<Request>{}) Set<Request> requests,
+    @Default(.0) double stars,
   }) = _User;
 
   User._();

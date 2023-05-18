@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:faker/faker.dart';
+import 'package:medial_match/extensions/unix_time.dart';
 import 'package:medial_match/models/contract.dart';
 import 'package:medial_match/models/news.dart';
 import 'package:medial_match/models/offer.dart';
@@ -22,19 +23,26 @@ abstract class MockModelGenerator {
       (_randomInstance.nextInt(500000) + 20000));
 
   /// Generate a Lorem Ipsum paragraph
-  static String get mockParagraph => _fakerInstance.lorem.sentences(10).reduce(
-        (value, element) => "$value $element",
-      );
+  static String mockParagraph([int sentences = 5]) =>
+      _fakerInstance.lorem.sentences(sentences).reduce(
+            (value, element) => "$value $element",
+          );
 
   /// Generate fake user
-  static User mockUser([int contracts = 0, int requests = 0, int offers = 0]) =>
+  static User mockUser({
+    int contracts = 0,
+    int requests = 0,
+    int offers = 0,
+    UserType userType = UserType.client,
+  }) =>
       User(
         id: _fakerInstance.randomGenerator.integer(1024),
         name: _fakerInstance.person.name(),
-        type: UserType.client,
+        type: userType,
         contracts: List.generate(contracts, (index) => mockContract).toSet(),
         requests:
             List.generate(requests, (index) => mockRequest(offers)).toSet(),
+        stars: _fakerInstance.randomGenerator.decimal(scale: 5.0),
       );
 
   /// Generate a MockService
@@ -44,7 +52,7 @@ abstract class MockModelGenerator {
     return Service(
       id: _serviceInstanceCode++,
       name: _fakerInstance.lorem.sentence(),
-      description: mockParagraph,
+      description: mockParagraph(10),
       priceLower: randomLowerPrice,
       priceUpper: randomLowerPrice + _randomInstance.nextInt(100000),
     );
@@ -53,18 +61,20 @@ abstract class MockModelGenerator {
   /// Generate mock contract
   static Contract get mockContract => Contract(
         id: _contractInstanceCode++,
-        freelancer: mockUser(),
+        freelancer: mockUser(userType: UserType.freelancer),
         service: mockService,
         price: mockPrice,
-        details: mockParagraph,
-        createdAt: _fakerInstance.date.dateTime().millisecondsSinceEpoch,
-        dueAt: _fakerInstance.date.dateTime().millisecondsSinceEpoch,
+        details: mockParagraph(2),
+        createdAt:
+            _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
+        dueAt:
+            _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
       );
 
   /// Generate mock news
   static News get mockNews => News(
         title: faker.lorem.sentence(),
-        content: mockParagraph,
+        content: mockParagraph(10),
       );
 
   /// Generate mock offer

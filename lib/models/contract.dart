@@ -14,7 +14,11 @@ class Contract with _$Contract {
     required Service service,
     required double price,
     required String details,
+
+    /// Date of creation in UTC UnixEpochTime in seconds
     required int createdAt,
+
+    /// due date in UTC UnixEpochTime in seconds
     required int dueAt,
   }) = _Contract;
 

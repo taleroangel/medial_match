@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:intl/intl.dart';
 import 'package:medial_match/services/image_storage_service.dart';
+import 'package:medial_match/extensions/price_formatter.dart';
 
 part 'service.freezed.dart';
 part 'service.g.dart';
@@ -24,15 +24,8 @@ class Service with _$Service {
   /// Lazy fetch the image
   late final image = GetIt.I.get<IImageStorageService>().fetch("service_$id");
 
-  /// Price formatter
-  static final priceFormat = NumberFormat("###,###,### \$");
-
-  /// Parse price into [priceFormat]
-  String _parsePrice(double? price) =>
-      price != null ? priceFormat.format(price) : '?';
-
   /// Get the price formatted
   String? get price => (priceLower != null && priceUpper != null)
-      ? "${_parsePrice(priceLower)} - ${_parsePrice(priceUpper)}"
+      ? "${priceLower!.asPrice} - ${priceUpper!.asPrice}"
       : null;
 }

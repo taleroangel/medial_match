@@ -17,7 +17,11 @@ class MockAuthenticationProvider extends AbstractAuthenticationProvider {
   @override
   Future<User> authenticate(String email, String password) async {
     _authenticationStatus = true;
-    _currentUser = MockModelGenerator.mockUser(10, 5, 5);
+    _currentUser = MockModelGenerator.mockUser(
+      contracts: 10,
+      offers: 5,
+      requests: 5,
+    );
 
     GetIt.I.get<Logger>().i(
           "Authenticated successfully\n[email: $email, password: $password]",

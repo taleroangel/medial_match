@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/providers/abstract_authentication_provider.dart';
+import 'package:medial_match/widgets/contract_card_widget.dart';
 import 'package:provider/provider.dart';
 
 class ContractsScreen extends StatelessWidget {
@@ -7,26 +8,24 @@ class ContractsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final contracts =
-        context.read<AbstractAuthenticationProvider>().user!.contracts;
+    // Get all contracts as Widgets
+    final contracts = context
+        .watch<AbstractAuthenticationProvider>()
+        .user!
+        .contracts
+        .map((e) => Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4.0,
+                horizontal: 8.0,
+              ),
+              child: ContractCardWidget(contract: e),
+            ));
 
     return Scaffold(
       appBar: AppBar(title: const Text("Contratos")),
-      body: SingleChildScrollView(
-        child: Column(
-          children: contracts
-              .map((e) => e.toJson())
-              .map((e) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(e.toString()),
-                      ),
-                    ),
-                  ))
-              .toList(),
-        ),
+      body: ListView.builder(
+        itemCount: contracts.length,
+        itemBuilder: (context, index) => contracts.elementAt(index),
       ),
     );
   }
