@@ -43,6 +43,7 @@ class ServiceCardWidget extends StatelessWidget {
                     ImageContentLoaderWidget(
                       imageFuture: service.image,
                       shouldNotifyLoad: true,
+                      heroTag: "service@${service.id}",
                     ),
               ),
             ),

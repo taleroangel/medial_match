@@ -9,11 +9,13 @@ class ImageContentLoaderWidget extends StatelessWidget {
   const ImageContentLoaderWidget({
     required this.imageFuture,
     this.shouldNotifyLoad = false,
+    this.heroTag,
     super.key,
   });
 
   final Future<Uint8List> imageFuture;
   final bool shouldNotifyLoad;
+  final Object? heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +27,15 @@ class ImageContentLoaderWidget extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           // If image had an error
           if (snapshot.hasError) {
-            contentMemoryLoadedImage = Hero(
-              tag: imageFuture.hashCode,
-              child: Image.asset(
-                "assets/images/not_found.jpg",
-                fit: BoxFit.cover,
-              ),
+            contentMemoryLoadedImage = Image.asset(
+              "assets/images/not_found.jpg",
+              fit: BoxFit.cover,
             );
           }
           // If image success fully loaded
           else if (snapshot.hasData) {
             contentMemoryLoadedImage = Hero(
-              tag: imageFuture.hashCode,
+              tag: heroTag ?? snapshot.data!.hashCode,
               child: Image.memory(
                 snapshot.data!,
                 fit: BoxFit.cover,

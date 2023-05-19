@@ -52,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       return;
     }
 
-    //TODO: Create accout
+    //TODO: Create account
   }
 
   @override

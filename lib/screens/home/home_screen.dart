@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:medial_match/providers/abstract_authentication_provider.dart';
 import 'package:medial_match/screens/contracts/contracts_screen.dart';
 import 'package:medial_match/screens/main_screen_destinations.dart';
-import 'package:medial_match/screens/requests/requests_screen.dart';
+import 'package:medial_match/screens/requests/service_request_screen.dart';
 import 'package:medial_match/screens/users/user_screen.dart';
 import 'package:medial_match/services/database_service.dart';
 import 'package:medial_match/widgets/news_card_widget.dart';
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                       ElevatedButton.icon(
                         onPressed: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (_) => const RequestsScreen(),
+                            builder: (_) => const ServiceRequestScreen(),
                           ),
                         ),
                         icon: const Icon(Icons.back_hand),

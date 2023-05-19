@@ -42,8 +42,7 @@ class ContractCardWidget extends StatelessWidget {
                         child: Badge(
                           backgroundColor: colorScheme.primary,
                           label: Text(
-                            dateFormat
-                                .format(UnixTime.fromUnixTime(contract.dueAt)),
+                            dateFormat.format(contract.dueAt.asUnixTime),
                           ),
                         ),
                       ),
@@ -84,7 +83,13 @@ class ContractCardWidget extends StatelessWidget {
                   color: colorScheme.onPrimary,
                   borderRadius: BorderRadius.circular(16.0),
                 ),
-                child: UserTileWidget(user: contract.freelancer),
+                child: UserTileWidget(
+                  user: contract.freelancer,
+                  trailing: GestureDetector(
+                    onTap: () {/*TODO: Chat */},
+                    child: const Icon(Icons.message_rounded),
+                  ),
+                ),
               ),
             ),
 
@@ -95,11 +100,19 @@ class ContractCardWidget extends StatelessWidget {
                 spacing: 8.0,
                 children: [
                   Badge(
-                    label: Text("Costo: ${contract.price.asPrice}"),
+                    largeSize: 32.0,
+                    label: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Costo: ${contract.price.asPrice}"),
+                    ),
                   ),
                   Badge(
-                    label: Text(
-                      "Debe finalizarse: ${dateFormat.format(UnixTime.fromUnixTime(contract.dueAt))}",
+                    largeSize: 32.0,
+                    label: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Debe finalizarse: ${dateFormat.format(contract.dueAt.asUnixTime)}",
+                      ),
                     ),
                   ),
                 ],

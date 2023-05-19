@@ -36,6 +36,7 @@ class ServiceTileWidget extends StatelessWidget {
                 child: ImageContentLoaderWidget(
                   imageFuture: service.image,
                   shouldNotifyLoad: true,
+                  heroTag: "service@${service.id}",
                 ),
               ),
             ),

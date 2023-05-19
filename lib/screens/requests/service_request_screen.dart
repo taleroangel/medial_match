@@ -5,8 +5,8 @@ import 'package:medial_match/delegates/services_search_delegate.dart';
 import 'package:medial_match/services/database_service.dart';
 import 'package:medial_match/widgets/service_card_widget.dart';
 
-class RequestsScreen extends StatelessWidget {
-  const RequestsScreen({super.key});
+class ServiceRequestScreen extends StatelessWidget {
+  const ServiceRequestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class RequestsScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton.icon(
-                            onPressed: () {},
+                            onPressed: () {/* TODO: ChatBot Screen */},
                             icon: const Icon(Icons.chat),
                             label: const Text("Habla con un ChatBot"),
                           ),

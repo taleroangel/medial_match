@@ -23,6 +23,7 @@ class NewsCardWidget extends StatelessWidget {
             child: memoryLoadedImage ??
                 ImageContentLoaderWidget(
                   imageFuture: news.imageContent,
+                  heroTag: news.imageUrl,
                 ),
           ),
           Padding(

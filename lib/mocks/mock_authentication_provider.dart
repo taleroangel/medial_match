@@ -5,10 +5,14 @@ import 'package:medial_match/models/user.dart';
 import 'package:medial_match/providers/abstract_authentication_provider.dart';
 
 class MockAuthenticationProvider extends AbstractAuthenticationProvider {
-  MockAuthenticationProvider() {
+  MockAuthenticationProvider([bool initAuthenticated = false]) {
     GetIt.I.get<Logger>().d(
-          "Generated $runtimeType",
+          "Generated $runtimeType${initAuthenticated ? ' (as Authenticated)' : ''}",
         );
+
+    if (initAuthenticated) {
+      authenticate("", "");
+    }
   }
 
   var _authenticationStatus = false;
@@ -19,14 +23,12 @@ class MockAuthenticationProvider extends AbstractAuthenticationProvider {
     _authenticationStatus = true;
     _currentUser = MockModelGenerator.mockUser(
       contracts: 10,
-      offers: 5,
       requests: 5,
+      maxOffers: 10,
     );
-
     GetIt.I.get<Logger>().i(
-          "Authenticated successfully\n[email: $email, password: $password]",
+          "[Mock] Authenticated successfully: $email",
         );
-
     notifyListeners();
 
     return _currentUser!;

@@ -9,8 +9,11 @@ part 'request.g.dart';
 @freezed
 class Request with _$Request {
   const factory Request({
+    required int id,
+    required int date,
     required Service service,
     required Set<Offer> offers,
+    required String description,
   }) = _Request;
 
   factory Request.fromJson(Map<String, Object?> json) =>

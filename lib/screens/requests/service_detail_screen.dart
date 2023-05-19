@@ -18,7 +18,7 @@ class ServiceDetailScreen extends StatelessWidget {
           title: const Text("Detalles del Servicio"),
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {}, //TODO: Pantalla de Cotización
+          onPressed: () {/* TODO: Pantalla de Cotización */},
           icon: const Icon(Icons.back_hand_rounded),
           label: const Text("Cotizar!"),
         ),
@@ -31,6 +31,7 @@ class ServiceDetailScreen extends StatelessWidget {
               child: memoryLoadedImage ??
                   ImageContentLoaderWidget(
                     imageFuture: service.image,
+                    heroTag: "service@${service.id}",
                   ),
             ),
             // Title

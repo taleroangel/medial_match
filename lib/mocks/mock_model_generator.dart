@@ -13,10 +13,14 @@ abstract class MockModelGenerator {
   // Instance counters
   static var _serviceInstanceCode = 0;
   static var _contractInstanceCode = 0;
+  static var _requestInstanceCode = 0;
 
   // Fake providers
   static final _fakerInstance = Faker();
   static final _randomInstance = Random();
+
+  // Services Stack
+  static final serviceStack = List.generate(15, (_) => mockService).toSet();
 
   /// Generate a random price
   static double get mockPrice => (_randomInstance.nextDouble() *
@@ -32,16 +36,23 @@ abstract class MockModelGenerator {
   static User mockUser({
     int contracts = 0,
     int requests = 0,
-    int offers = 0,
+    int maxOffers = 0,
     UserType userType = UserType.client,
   }) =>
       User(
         id: _fakerInstance.randomGenerator.integer(1024),
         name: _fakerInstance.person.name(),
         type: userType,
-        contracts: List.generate(contracts, (index) => mockContract).toSet(),
-        requests:
-            List.generate(requests, (index) => mockRequest(offers)).toSet(),
+        contracts: List.generate(
+          contracts,
+          (index) => mockContract,
+        ).toSet(),
+        requests: List.generate(
+          requests,
+          (index) => mockRequest(_randomInstance.nextInt(3) == 0
+              ? _randomInstance.nextInt(maxOffers)
+              : 0),
+        ).toSet(),
         stars: _fakerInstance.randomGenerator.decimal(scale: 5.0),
       );
 
@@ -61,8 +72,10 @@ abstract class MockModelGenerator {
   /// Generate mock contract
   static Contract get mockContract => Contract(
         id: _contractInstanceCode++,
+        service: serviceStack.elementAt(_fakerInstance.randomGenerator.integer(
+          serviceStack.length,
+        )),
         freelancer: mockUser(userType: UserType.freelancer),
-        service: mockService,
         price: mockPrice,
         details: mockParagraph(2),
         createdAt:
@@ -85,7 +98,13 @@ abstract class MockModelGenerator {
 
   /// Generate a mock request
   static Request mockRequest([int offers = 0]) => Request(
-        service: mockService,
+        id: _requestInstanceCode++,
+        date:
+            _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
+        description: mockParagraph(2),
         offers: List.generate(offers, (_) => mockOffer).toSet(),
+        service: serviceStack.elementAt(_fakerInstance.randomGenerator.integer(
+          serviceStack.length,
+        )),
       );
 }

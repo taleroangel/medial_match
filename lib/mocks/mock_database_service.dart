@@ -14,8 +14,7 @@ class MockDatabaseService implements IDatabaseService {
   }
 
   // Generate number of mockup services
-  late final Set<Service> _services =
-      List.generate(10, (_) => MockModelGenerator.mockService).toSet();
+  late final Set<Service> _services = MockModelGenerator.serviceStack;
 
   // Generate number of mockup news
   late final Set<News> _news =

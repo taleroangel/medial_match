@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:medial_match/providers/abstract_authentication_provider.dart';
 import 'package:medial_match/mocks/mock_authentication_provider.dart';
@@ -14,7 +15,7 @@ class Application extends StatelessWidget {
         providers: [
           // Provides authentication to underlying widgets
           ChangeNotifierProvider<AbstractAuthenticationProvider>(
-            create: (_) => MockAuthenticationProvider(),
+            create: (_) => MockAuthenticationProvider(kDebugMode),
           ),
         ],
         builder: (_, __) => MaterialApp(
