@@ -45,7 +45,7 @@ class RequestDetailScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: Text(
-                        "No eres Google, pero tienes todo lo que busco...",
+                        "No busques más, ¡Aquí está tu media naranja!",
                         style: Theme.of(context).textTheme.headlineMedium,
                         textAlign: TextAlign.center,
                       ),

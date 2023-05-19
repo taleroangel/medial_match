@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:medial_match/models/message.dart';
 import 'package:medial_match/models/service.dart';
 import 'package:medial_match/models/user.dart';
 
@@ -20,6 +21,9 @@ class Contract with _$Contract {
 
     /// due date in UTC UnixEpochTime in seconds
     required int dueAt,
+
+    /// Chat
+    @Default([]) List<Message> chat,
   }) = _Contract;
 
   Contract._();

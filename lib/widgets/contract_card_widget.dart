@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:medial_match/extensions/price_formatter.dart';
 import 'package:medial_match/models/contract.dart';
+import 'package:medial_match/screens/contracts/chat_screen.dart';
 import 'package:medial_match/widgets/service_tile_widget.dart';
 import 'package:medial_match/widgets/user_tile_widget.dart';
 import 'package:medial_match/extensions/unix_time.dart';
@@ -86,7 +87,11 @@ class ContractCardWidget extends StatelessWidget {
                 child: UserTileWidget(
                   user: contract.freelancer,
                   trailing: GestureDetector(
-                    onTap: () {/*TODO: Chat */},
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => ChatScreen(
+                        contract: contract,
+                      ),
+                    )),
                     child: const Icon(Icons.message_rounded),
                   ),
                 ),

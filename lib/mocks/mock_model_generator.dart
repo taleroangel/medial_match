@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:medial_match/extensions/unix_time.dart';
 import 'package:medial_match/models/contract.dart';
+import 'package:medial_match/models/message.dart';
 import 'package:medial_match/models/news.dart';
 import 'package:medial_match/models/offer.dart';
 import 'package:medial_match/models/request.dart';
@@ -82,6 +83,9 @@ abstract class MockModelGenerator {
             _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
         dueAt:
             _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
+        chat: _randomInstance.nextInt(3) == 0
+            ? []
+            : List.generate(10, (index) => mockMessage),
       );
 
   /// Generate mock news
@@ -106,5 +110,10 @@ abstract class MockModelGenerator {
         service: serviceStack.elementAt(_fakerInstance.randomGenerator.integer(
           serviceStack.length,
         )),
+      );
+
+  static Message get mockMessage => Message(
+        content: mockParagraph(1),
+        who: (UserType.values.toList()..shuffle(_randomInstance)).first,
       );
 }

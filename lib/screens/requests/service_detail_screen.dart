@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/models/service.dart';
+import 'package:medial_match/screens/requests/service_price_screen.dart';
 import 'package:medial_match/widgets/image_content_loader_widget.dart';
 
 class ServiceDetailScreen extends StatelessWidget {
@@ -18,7 +19,9 @@ class ServiceDetailScreen extends StatelessWidget {
           title: const Text("Detalles del Servicio"),
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {/* TODO: Pantalla de Cotización */},
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => ServicePriceScreen(service: service),
+          )),
           icon: const Icon(Icons.back_hand_rounded),
           label: const Text("Cotizar!"),
         ),
