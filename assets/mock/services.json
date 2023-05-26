@@ -1,0 +1,79 @@
+[
+	{
+		"id": 0,
+		"name": "Producción Audiovisual",
+		"description": "Incluye el rodaje de videos corporativos, spot publicitarios, eventos, etc., utilizando equipos de alta calidad y técnicas de filmación profesionales. También puede incluir edición de video para crear el producto final.",
+		"priceLower": 400000,
+		"priceUpper": 1000000
+	},
+	{
+		"id": 1,
+		"name": "Diseño visual y Motion graphics",
+		"description": "Se trata de la creación de animaciones, efectos especiales y gráficos en movimiento para añadirlos a videos, presentaciones y aplicaciones. Este servicio también puede incluir diseño de logo y brand identity para complementar la imagen visual de una empresa.",
+		"priceLower": 200000,
+		"priceUpper": 60000000
+	},
+	{
+		"id": 2,
+		"name": "Fotografía corporativa",
+		"description": "Consiste en la fotografía de productos, servicios, empleados y otras actividades relevantes para una empresa. La fotografía corporativa suele utilizarse en sitios web, catálogos, folletos y materiales promocionales.",
+		"priceLower": 400000,
+		"priceUpper": 1000000
+	},
+	{
+		"id": 3,
+		"name": "Influencer marketing",
+		"description": "Trabajando con influencers de las redes sociales para promocionar productos o servicios a través de sus plataformas.",
+		"priceLower": 600000,
+		"priceUpper": 1500000
+	},
+	{
+		"id": 4,
+		"name": "Content marketing",
+		"description": "Creación e intercambio de contenido valioso y relevante dirigido a potenciales clientes para atraerlos a su negocio.",
+		"priceLower": 400000,
+		"priceUpper": 800000
+	},
+	{
+		"id": 5,
+		"name": "Search Engine Optimization (SEO)",
+		"description": "Mejora la visible de sitios web en buscadores como Google mediante la investigación de palabras clave, seguimiento, etiquetas metatag y otras estrategias.",
+		"priceLower": 400000,
+		"priceUpper": 800000
+	},
+	{
+		"id": 6,
+		"name": "Pay-Per-Click Advertising (PPC)",
+		"description": "Tipo de publicidad en línea en el cual debes pagar cada vez que alguien haga clic en un anuncio. Se utiliza comúnmente para la mercadotecnia por motores de búsqueda (SEM).",
+		"priceLower": 600000,
+		"priceUpper": 1000000
+	},
+	{
+		"id": 7,
+		"name": "Email Marketing",
+		"description": "Utilizar correos electrónicos para construir relaciones con suscriptores y fomentar ventas.",
+		"priceLower": 600000,
+		"priceUpper": 120000000
+	},
+	{
+		"id": 8,
+		"name": "Social Media Management",
+		"description": "Administra las cuentas de las redes sociales para marcas, creando post publicitarios y respondiendo comentarios, así como analizando indicadores de rendimiento.",
+		"priceLower": 500000,
+		"priceUpper": 900000
+	},
+	{
+		"id": 9,
+		"name": "Video Production Services",
+		"description": "Desarrolla contenido de alta calidad, incluyendo comerciales, explicativos, tutoriales, entrevistas, transmisiones en vivo, productos demonstraciones, folletos informativos y mucho mas.",
+		"priceLower": 900000,
+		"priceUpper": 140000000
+	},
+	{
+		"id": 10,
+		"name": "Brand Identity Design",
+		"description": "Ayuda a empresas a desarrollar un aspecto constante en todos los materiales, como tarjetas de presentación, papelería, carteles, signos, equipamiento deportivo personalizado, diseños gráficos, entre otros.",
+		"priceLower": 800000,
+		"priceUpper": 1500000
+	}
+]

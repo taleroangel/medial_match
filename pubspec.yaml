@@ -44,6 +44,8 @@ flutter:
     - assets/images/
     - assets/svg/
 
+    - assets/mock/
+
   fonts:
     - family: MedialNow
       fonts:

@@ -14,7 +14,10 @@ class MatchScreen extends StatelessWidget {
         .requests
         .map((e) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: RequestCardWidget(request: e),
+              child: RequestCardWidget(
+                request: e,
+                key: ObjectKey(e),
+              ),
             ));
 
     return Scaffold(

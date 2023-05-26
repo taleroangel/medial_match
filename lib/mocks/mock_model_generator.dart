@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:faker/faker.dart';
+import 'package:get_it/get_it.dart';
 import 'package:medial_match/extensions/unix_time.dart';
+import 'package:medial_match/mocks/mock_asset_loader.dart';
 import 'package:medial_match/models/contract.dart';
 import 'package:medial_match/models/message.dart';
 import 'package:medial_match/models/news.dart';
@@ -21,7 +23,7 @@ abstract class MockModelGenerator {
   static final _randomInstance = Random();
 
   // Services Stack
-  static final serviceStack = List.generate(15, (_) => mockService).toSet();
+  static final serviceStack = GetIt.I.get<MockAssetLoader>().services;
 
   /// Generate a random price
   static double get mockPrice => (_randomInstance.nextDouble() *
@@ -50,11 +52,12 @@ abstract class MockModelGenerator {
         ).toSet(),
         requests: List.generate(
           requests,
-          (index) => mockRequest(_randomInstance.nextInt(3) == 0
+          (index) => mockRequest(_randomInstance.nextInt(2) == 0
               ? _randomInstance.nextInt(maxOffers)
               : 0),
         ).toSet(),
         stars: _fakerInstance.randomGenerator.decimal(scale: 5.0),
+        presentation: userType == UserType.freelancer ? mockParagraph() : null,
       );
 
   /// Generate a MockService

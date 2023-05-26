@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medial_match/extensions/price_formatter.dart';
 import 'package:medial_match/models/request.dart';
+import 'package:medial_match/screens/match/offer_detail_screen.dart';
 import 'package:medial_match/widgets/service_tile_widget.dart';
 import 'package:medial_match/widgets/user_tile_widget.dart';
 
@@ -96,9 +97,14 @@ class RequestDetailScreen extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 32.0),
                         child: GestureDetector(
-                          onTap: () {/* TODO: On user click */},
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => OfferDetailScreen(offer: offer),
+                            ),
+                          ),
                           child: Card(
                             child: UserTileWidget(
+                              key: ObjectKey(offer.freelancer),
                               user: offer.freelancer,
                               trailing: Badge(
                                 largeSize: 32.0,

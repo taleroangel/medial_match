@@ -16,13 +16,14 @@ class User with _$User {
     @Default(<Contract>{}) Set<Contract> contracts,
     @Default(<Request>{}) Set<Request> requests,
     @Default(.0) double stars,
+    @Default(null) String? presentation,
   }) = _User;
 
   User._();
 
   /// Lazy fetch the profile picture
   late final profilePicture =
-      GetIt.I.get<IImageStorageService>().fetch("user_$id");
+      GetIt.I.get<IImageStorageService>().fetch("user:$id");
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

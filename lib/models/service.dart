@@ -22,7 +22,7 @@ class Service with _$Service {
   Service._();
 
   /// Lazy fetch the image
-  late final image = GetIt.I.get<IImageStorageService>().fetch("service_$id");
+  late final image = GetIt.I.get<IImageStorageService>().fetch("service:$id");
 
   /// Get the price formatted
   String? get price => (priceLower != null && priceUpper != null)
