@@ -22,7 +22,30 @@ class Application extends StatelessWidget {
           theme: applicationTheme(),
           home: Consumer<AbstractAuthenticationProvider>(
             builder: (_, provider, __) => provider.authenticated
-                ? const MainScreen()
+                ? WillPopScope(
+                    onWillPop: () async {
+                      bool? result = (await showDialog<bool>(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: const Text("Salir"),
+                          content: const Text("Realmente desea salir?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: const Text("Cancelar"),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: const Text("Salir"),
+                            ),
+                          ],
+                        ),
+                      ));
+
+                      return result == true;
+                    },
+                    child: const MainScreen(),
+                  )
                 : const UnauthenticatedScreen(),
           ),
         ),

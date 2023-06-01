@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
+import 'package:medial_match/mocks/mock_model_generator.dart';
 import 'package:medial_match/models/contract.dart';
 import 'package:medial_match/models/user.dart';
+import 'package:medial_match/providers/abstract_authentication_provider.dart';
+import 'package:provider/provider.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({
-    required this.contract,
+    required this.initialContract,
     super.key,
   });
 
-  final Contract contract;
+  final Contract initialContract;
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = context.watch<AbstractAuthenticationProvider>();
     final colorScheme = Theme.of(context).colorScheme;
+
+    final contract =
+        authProvider.user!.contracts.where((e) => e == initialContract).first;
 
     return Scaffold(
       appBar: AppBar(title: Text("Chat con ${contract.freelancer.name}")),
@@ -73,11 +82,21 @@ class ChatScreen extends StatelessWidget {
                     color: colorScheme.onBackground,
                   ),
                 ),
-                child: const TextField(
+                child: TextField(
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    border:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
                     hintText: "Escribe un mensaje",
-                    suffixIcon: Icon(Icons.send),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        GetIt.I.get<Logger>().d("Send message");
+                        authProvider.message(
+                          contract,
+                          MockModelGenerator.mockParagraph(1),
+                        );
+                      },
+                      child: const Icon(Icons.send),
+                    ),
                   ),
                 ),
               ),

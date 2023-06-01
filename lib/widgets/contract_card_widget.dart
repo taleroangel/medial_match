@@ -89,7 +89,7 @@ class ContractCardWidget extends StatelessWidget {
                   trailing: GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) => ChatScreen(
-                        contract: contract,
+                        initialContract: contract,
                       ),
                     )),
                     child: const Icon(Icons.message_rounded),

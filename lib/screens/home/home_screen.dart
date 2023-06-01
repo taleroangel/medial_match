@@ -76,6 +76,7 @@ class HomeScreen extends StatelessWidget {
                         label: const Text("Solicitar Servicio"),
                       ),
                       Badge.count(
+                        isLabelVisible: user.contracts.isNotEmpty,
                         count: user.contracts.length,
                         child: ElevatedButton.icon(
                           onPressed: () => Navigator.of(context).push(

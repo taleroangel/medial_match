@@ -9,7 +9,7 @@ class MatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final offers = context
-        .read<AbstractAuthenticationProvider>()
+        .watch<AbstractAuthenticationProvider>()
         .user!
         .requests
         .map((e) => Padding(
@@ -55,6 +55,17 @@ class MatchScreen extends StatelessWidget {
           ),
 
           // List builder
+          if (offers.isEmpty)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Text(
+                  "Parece que aún no tienes solicitudes registradas",
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ),
+            ),
+
           SliverList.builder(
             itemCount: offers.length,
             itemBuilder: (_, index) => offers.elementAt(index),

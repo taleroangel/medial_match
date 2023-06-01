@@ -48,20 +48,22 @@ class _MainScreenState extends State<MainScreen> {
         bottomNavigationBar: NavigationBar(
           selectedIndex: currentPageIndex,
           onDestinationSelected: (value) => navigateToPage(value),
-          destinations: MainScreenDestinations.values
-              .map((e) => NavigationDestination(
-                    icon: Badge.count(
-                      count: context
-                          .read<AbstractAuthenticationProvider>()
-                          .user!
-                          .requests
-                          .length,
-                      isLabelVisible: e.view is MatchScreen,
-                      child: e.icon,
-                    ),
-                    label: e.text,
-                  ))
-              .toList(),
+          destinations: MainScreenDestinations.values.map((e) {
+            final matchCount = context
+                .watch<AbstractAuthenticationProvider>()
+                .user!
+                .requests
+                .length;
+
+            return NavigationDestination(
+              icon: Badge.count(
+                count: matchCount,
+                isLabelVisible: e.view is MatchScreen && matchCount > 0,
+                child: e.icon,
+              ),
+              label: e.text,
+            );
+          }).toList(),
         ),
       );
 }

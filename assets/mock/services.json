@@ -1,15 +1,15 @@
 [
 	{
 		"id": 0,
-		"name": "Producción Audiovisual",
-		"description": "Incluye el rodaje de videos corporativos, spot publicitarios, eventos, etc., utilizando equipos de alta calidad y técnicas de filmación profesionales. También puede incluir edición de video para crear el producto final.",
+		"name": "Cámara 360",
+		"description": "El servicio de préstamo de cámaras 360 te brinda la posibilidad de utilizar cámaras especializadas en la captura de imágenes panorámicas de 360 grados. Estas cámaras te permiten capturar imágenes en todas las direcciones, creando una experiencia visual envolvente y completa. Con nuestro servicio, puedes experimentar con la fotografía en 360 grados, explorar nuevas formas de capturar momentos y ampliar tu creatividad. Ofrecemos cámaras de calidad y un equipo de expertos que te proporcionarán asistencia y apoyo para sacar el máximo provecho de la tecnología de imágenes en 360 grados. Nuestro objetivo es brindarte las herramientas necesarias para que puedas sumergirte en esta emocionante forma de capturar y compartir momentos visuales.",
 		"priceLower": 400000,
 		"priceUpper": 1000000
 	},
 	{
 		"id": 1,
-		"name": "Diseño visual y Motion graphics",
-		"description": "Se trata de la creación de animaciones, efectos especiales y gráficos en movimiento para añadirlos a videos, presentaciones y aplicaciones. Este servicio también puede incluir diseño de logo y brand identity para complementar la imagen visual de una empresa.",
+		"name": "Plataforma giratoria 360",
+		"description": "El servicio de préstamo de plataforma giratoria te brinda la oportunidad de utilizar una plataforma especializada en la captura de imágenes en 360 grados. Esta plataforma te permite colocar la cámara en el centro y girarla automáticamente para capturar imágenes desde todos los ángulos, creando una vista panorámica completa. Con nuestro servicio, puedes experimentar la conveniencia y eficiencia de esta plataforma giratoria para capturar imágenes inmersivas. Ya sea que estés interesado en fotografía de productos, arquitectura, eventos o cualquier otro proyecto que requiera una vista completa de 360 grados",
 		"priceLower": 200000,
 		"priceUpper": 60000000
 	},

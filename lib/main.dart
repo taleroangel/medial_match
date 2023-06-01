@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -8,6 +9,7 @@ import 'package:medial_match/services/image_storage_service.dart';
 import 'package:medial_match/services/database_service.dart';
 import 'package:medial_match/mocks/mock_database_service.dart';
 import 'package:medial_match/mocks/mock_image_storage_service.dart';
+import 'package:medial_match/theme.dart';
 
 void main() async {
   // Register Logging
@@ -17,6 +19,28 @@ void main() async {
       printer: kDebugMode ? PrettyPrinter() : SimplePrinter(),
     ),
   );
+
+  // Enable notifications
+  AwesomeNotifications().initialize(
+    null,
+    [
+      NotificationChannel(
+        channelGroupKey: 'match_notification_group',
+        channelKey: 'match_notification',
+        channelName: 'Es un match!',
+        channelDescription: 'Notificaciones de matches',
+        defaultColor: medialMatchPrimary,
+        ledColor: Colors.white,
+      ),
+    ],
+    debug: kDebugMode,
+  );
+
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+    if (!isAllowed) {
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    }
+  });
 
   WidgetsFlutterBinding.ensureInitialized();
 

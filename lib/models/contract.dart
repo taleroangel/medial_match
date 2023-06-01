@@ -7,7 +7,7 @@ part 'contract.freezed.dart';
 part 'contract.g.dart';
 
 /// Contrato que se establece entre un Cliente y un Freelancer
-@freezed
+@Freezed(equal: false)
 class Contract with _$Contract {
   factory Contract({
     required int id,
@@ -27,6 +27,12 @@ class Contract with _$Contract {
   }) = _Contract;
 
   Contract._();
+
+  @override
+  bool operator ==(Object other) => (other is Contract) && (other.id == id);
+
+  @override
+  int get hashCode => id.hashCode;
 
   factory Contract.fromJson(Map<String, Object?> json) =>
       _$ContractFromJson(json);

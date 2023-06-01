@@ -27,7 +27,7 @@ class RequestDetailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        "El amor tocó a mi puerta y yo estaba paseando al perro.",
+                        "No hay ofertas disponibles",
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       const Padding(
@@ -99,7 +99,10 @@ class RequestDetailScreen extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => OfferDetailScreen(offer: offer),
+                              builder: (_) => OfferDetailScreen(
+                                offer: offer,
+                                request: request,
+                              ),
                             ),
                           ),
                           child: Card(

@@ -23,10 +23,20 @@ class ContractsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Contratos")),
-      body: ListView.builder(
-        itemCount: contracts.length,
-        itemBuilder: (context, index) => contracts.elementAt(index),
-      ),
+      body: contracts.isEmpty
+          ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: Text(
+                  "No tienes ningún contrato pendiente",
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
+              ),
+            )
+          : ListView.builder(
+              itemCount: contracts.length,
+              itemBuilder: (context, index) => contracts.elementAt(index),
+            ),
     );
   }
 }

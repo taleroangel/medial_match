@@ -88,7 +88,7 @@ abstract class MockModelGenerator {
             _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
         chat: _randomInstance.nextInt(3) == 0
             ? []
-            : List.generate(10, (index) => mockMessage),
+            : List.generate(10, (index) => mockMessage(null)),
       );
 
   /// Generate mock news
@@ -113,10 +113,12 @@ abstract class MockModelGenerator {
         service: serviceStack.elementAt(_fakerInstance.randomGenerator.integer(
           serviceStack.length,
         )),
+        dueAt:
+            _fakerInstance.date.dateTime(minYear: 2023, maxYear: 2024).unixTime,
       );
 
-  static Message get mockMessage => Message(
+  static Message mockMessage(UserType? type) => Message(
         content: mockParagraph(1),
-        who: (UserType.values.toList()..shuffle(_randomInstance)).first,
+        who: type ?? (UserType.values.toList()..shuffle(_randomInstance)).first,
       );
 }
