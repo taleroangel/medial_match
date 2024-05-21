@@ -4,9 +4,7 @@
 
 ## 📽️ Demo
 
-Video doesn't load? Visit: [Watch on Youtube](https://www.youtube.com/watch?v=RREbE4TfB-o&ab_channel=%C3%81ngelTalero)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RREbE4TfB-o?si=I-icSXwvaRfj0uv3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Visit the following link ([Watch on Youtube](https://www.youtube.com/watch?v=RREbE4TfB-o&ab_channel=%C3%81ngelTalero)) for a guided demo in Spanish
 
 ## 🖼️ Screenshots
 All the screenshots can be found in [docs/screenshots](docs/screenshots)
@@ -24,6 +22,8 @@ Run the following commands in separate terminals and leave them running while co
 
 	dart run slang watch
 	dart run build_runner watch
+
+You can also use the built-in *makefile*
 
 ## 🏗️ Compilation
 
@@ -52,3 +52,5 @@ Then compile the __.apk__ application using the following command
 ```sh
 flutter build apk --obfuscate --split-debug-info=build/app/output/symbols --no-track-widget-creation --release --bundle-sksl-path flutter_01.sksl.json --no-tree-shake-icons -v
 ```
+
+You can also use the built-in *makefile*
